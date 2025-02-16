@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Scissors, Syringe, CarTaxiFront, Hotel, Cloc
 
 const services = [
   {
-    title: "Banhose & Tosa",
+    title: "Banho e Tosa",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ipsum nunc, cursus quis tellus pretium, tristique facilisis massa. Mauris blandit eu orci quis venenatis. Nam congue rutrum facilisis.",
     duration: "1h",
     price: "$50",
@@ -59,9 +59,11 @@ export function Services() {
   }
 
   return (
-    <section className="bg-white py-16">
+    <section
+      data-aos="zoom-in"
+      className="bg-white py-16">
       <div className="container mx-auto px-4">
-        <h2 className="font-4xl font-bold mb-12">Serviços</h2>
+        <h2 className="text-4xl font-bold mb-12">Nossos serviços</h2>
 
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
@@ -85,7 +87,8 @@ export function Services() {
                         <span>{item.duration}</span>
                       </div>
                       <a
-                        href="#"
+                        target="_blank"
+                        href={`https://wa.me/?text=Olá vim pelo site e gostaria de mais informações sobre ${item.title}`} //entre a / e ? adicione o número para contato
                         className="flex items-center justify-center gap-2 hover:bg-green-500 px-4 py-1 rounded-md duration-300"
                       >
                         <WhatsappLogo className="w-5 h-5" />
