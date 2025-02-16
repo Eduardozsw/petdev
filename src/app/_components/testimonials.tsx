@@ -3,39 +3,30 @@
 import { WhatsappLogo } from "@phosphor-icons/react"
 import useEmblaCarousel from "embla-carousel-react"
 import { ChevronLeft, ChevronRight, Scissors, Syringe, CarTaxiFront, Hotel, Clock } from "lucide-react"
+import tutor1 from "../../../public/tutor1.png"
+import tutor2 from "../../../public/tutor2.png"
+import Image from "next/image"
 
-const services = [
+const testimonials = [
   {
-    title: "Banhose & Tosa",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ipsum nunc, cursus quis tellus pretium, tristique facilisis massa. Mauris blandit eu orci quis venenatis. Nam congue rutrum facilisis.",
-    duration: "1h",
-    price: "$50",
-    icon: <Scissors />,
-    linkText: "Olá, vi no site sobre banho e tosa gostaria de mais informações"
+    content:
+      "Desde que comecei a levar a Luna para banho e tosa aqui, ela nunca esteve tão feliz! O atendimento é impecável, os profissionais são super cuidadosos e sempre deixam minha peluda linda e cheirosa. Recomendo de olhos fechados!",
+    author: "Mariana Souza",
+    role: "Tutora da Luna (Golden Retriever)",
+    image: tutor2,
   },
   {
-    title: "Atendimento",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ipsum nunc, cursus quis tellus pretium, tristique facilisis massa. Mauris blandit eu orci quis venenatis. Nam congue rutrum facilisis.",
-    duration: "1h",
-    price: "$50",
-    icon: <Syringe />,
-    linkText: "Olá, vi no site sobre banho e tosa gostaria de mais informações"
+    content:
+      "O serviço de hotel para pets foi uma experiência incrível! Precisei viajar e fiquei tranquilo sabendo que o Thor estava sendo bem cuidado. Recebi fotos e atualizações diárias, e ele voltou para casa super feliz! Sem dúvida, o melhor petshop da região.",
+    author: "Rafael",
+    role: "Tutor do Thor (Bulldog Francês)",
+    image: tutor1,
   },
   {
-    title: "Dúvidas",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ipsum nunc, cursus quis tellus pretium, tristique facilisis massa. Mauris blandit eu orci quis venenatis. Nam congue rutrum facilisis.",
-    duration: "1h",
-    price: "$50",
-    icon: <Scissors />,
-    linkText: "Olá, vi no site sobre banho e tosa gostaria de mais informações"
-  },
-  {
-    title: "Medicações",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ipsum nunc, cursus quis tellus pretium, tristique facilisis massa. Mauris blandit eu orci quis venenatis. Nam congue rutrum facilisis.",
-    duration: "1h",
-    price: "$50",
-    icon: <CarTaxiFront />,
-    linkText: "Olá, vi no site sobre banho e tosa gostaria de mais informações"
+    content: "Meus gatos nunca gostaram de sair de casa, mas o atendimento nesse petshop fez toda a diferença. A equipe é muito paciente e cuidadosa, e o serviço de banho especializado para felinos foi maravilhoso! Agora sei onde confiar o cuidado deles.",
+    author: "Camila fernandes",
+    role: "Tutora da Mel e do Max",
+    image: tutor2,
   },
 ]
 
@@ -44,11 +35,6 @@ export function Testimonials() {
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: "start",
-    slidesToScroll: 1,
-    breakpoints: {
-      "(mim-widht: 768px)": { slidesToScroll: 3 }
-    }
   })
 
   function scrollPrev() {
@@ -59,38 +45,33 @@ export function Testimonials() {
   }
 
   return (
-    <section className="bg-white py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="font-4xl font-bold mb-12">Serviços</h2>
+    <section className="bg-[#FFD449] py-16">
+      <div
+        data-aos="zoom-in"
+        className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">Depoimentos dos nossos clientes</h2>
 
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {services.map((item, index) => (
-                <div key={index} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_calc(100%/3)] px-3">
+              {testimonials.map((item, index) => (
+                <div key={index} className="flex-[0_0_100%] min-w-0 px-3">
                   <article className="bg-[#1e293b] text-white rounded-2xl p-6 space-y-4 h-full flex flex-col">
-                    <div className="flex-1 flex items-start justify-between">
-                      <div className="flex gap-3">
-                        <span className="text-3xl">{item.icon}</span>
-                        <div>
-                          <h3 className="font-bold text-xl my-1">{item.title}</h3>
-                          <p className="text-gray-400 text-sm select-none">{item.description}</p>
-                        </div>
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className="relative w-24 h-24">
+                        <Image
+                          alt={item.content}
+                          src={item.image}
+                          fill
+                          sizes="96px"
+                          className="object-cover rounded-full"
+                        />
                       </div>
-                    </div>
-
-                    <div className="border-t border-gray-700 pt-4 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-sm">
-                        <Clock className="w-4 h-4" />
-                        <span>{item.duration}</span>
+                      <p className="text-gray-200">{item.content}</p>
+                      <div>
+                        <p className="font-bold">{item.author}</p>
+                        <p className="text-sm text-gray-400">{item.role}</p>
                       </div>
-                      <a
-                        href="#"
-                        className="flex items-center justify-center gap-2 hover:bg-green-500 px-4 py-1 rounded-md duration-300"
-                      >
-                        <WhatsappLogo className="w-5 h-5" />
-                        Entrar em contato
-                      </a>
                     </div>
                   </article>
                 </div>
